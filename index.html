@@ -2,7 +2,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Image Editor</title>
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+        rel="stylesheet"
+    />
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,13 +17,17 @@
                 <div class="top">
                     <label for="image-input" class="btn">
                         Choose Image
+                        <i class="ri-image-add-fill"></i>
                         <input type="file" id="image-input" accept="image/*" hidden>
                     </label>
-                    <button class="btn" id="reset-btn">Reset</button>
-                    <button class="btn" id="download-btn">Download</button>
+                    <button class="btn" id="reset-btn">Reset <i class="ri-reset-left-line"></i></button>
+                    <button class="btn" id="download-btn">Download <i class="ri-download-2-fill"></i></button>
                 </div>
                 <div class="bottom">
-                    <canvas></canvas>
+                    <div class="placeholder">
+                        <i class="ri-image-line"></i>
+                        <p>No image choosen</p>
+                    </div>
                 </div>
             </div>
             <div class="right"></div>
