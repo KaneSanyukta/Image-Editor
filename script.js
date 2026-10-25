@@ -11,12 +11,6 @@ const filters = {
         max:200,
         unit:"%",
     },
-    exposure:{
-        min:0,
-        value:100,
-        max:200,
-        unit:"%",
-    },
     saturation:{
         min:0,
         value:100,
@@ -68,9 +62,11 @@ const imageCanvas = document.querySelector("#image-canvas");
 const canvasCtx = imageCanvas.getContext("2d");
 const imageInput = document.querySelector("#image-input");
 const reset = document.querySelector("#reset-btn");
+let file = "null";
+let selectedImage = "null";
 
 imageInput.addEventListener("change",(dets)=>{
-    const file = dets.target.files[0];
+    file = dets.target.files[0];
     console.dir(file);
 
     // Creating image through JS
@@ -79,6 +75,7 @@ imageInput.addEventListener("change",(dets)=>{
     image.src = URL.createObjectURL(file);
 
     image.onload = () => {
+        selectedImage = image;
         placeHolder.style.display = "none";
         imageCanvas.style.display = "initial";
         imageCanvas.width = image.width;
@@ -112,6 +109,15 @@ function createFilterElement(name,unit="%",value,min,max){
     div.appendChild(p);
     div.appendChild(input);
 
+    input.addEventListener("input",(event)=>{
+        // console.log(event.target.value);
+        // console.log(event.target.id);
+
+        filters[name].value = input.value;
+        // console.log(filters[name]);
+        applyFilters(event.target.id);
+    })
+
     return div;
 }
 
@@ -130,3 +136,25 @@ Object.keys(filters).forEach(filter=>{
     //console.dir(filterElement);
     filterContainer.appendChild(filterElement);
 });
+
+function applyFilters(property){
+    console.log(property);
+
+    // crearing previous image
+    canvasCtx.clearRect(0,0,imageCanvas.width,imageCanvas.height);
+
+    canvasCtx.filter = `
+        brightness(${filters.brightness.value}${filters.brightness.unit})
+        contrast(${filters.contrast.value}${filters.contrast.unit})
+        saturate(${filters.saturation.value}${filters.saturation.unit})
+        hue-rotate(${filters.hueRotation.value}${filters.hueRotation.unit})
+        blur(${filters.blur.value}${filters.blur.unit})
+        grayscale(${filters.grayscale.value}${filters.grayscale.unit})
+        sepia(${filters.sepia.value}${filters.sepia.unit})
+        opacity(${filters.opacity.value}${filters.opacity.unit})
+        invert(${filters.invert.value}${filters.invert.unit})
+        `;
+
+    // re-draw image
+    canvasCtx.drawImage(selectedImage,0,0);
+}
