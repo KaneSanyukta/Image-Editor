@@ -63,6 +63,37 @@ const filters = {
 
 const filterContainer = document.querySelector(".filters");
 
+const placeHolder = document.querySelector(".placeholder");
+const imageCanvas = document.querySelector("#image-canvas");
+const canvasCtx = imageCanvas.getContext("2d");
+const imageInput = document.querySelector("#image-input");
+const reset = document.querySelector("#reset-btn");
+
+imageInput.addEventListener("change",(dets)=>{
+    const file = dets.target.files[0];
+    console.dir(file);
+
+    // Creating image through JS
+    const image = new Image();
+    // converting in URL
+    image.src = URL.createObjectURL(file);
+
+    image.onload = () => {
+        placeHolder.style.display = "none";
+        imageCanvas.style.display = "initial";
+        imageCanvas.width = image.width;
+        imageCanvas.height = image.height;
+        canvasCtx.drawImage(image,0,0);
+    }
+
+});
+
+reset.addEventListener("click",()=>{
+    imageCanvas.style.display = "none";
+    placeHolder.style.display = "flex";
+});
+
+
 function createFilterElement(name,unit="%",value,min,max){
 
     const div = document.createElement("div");

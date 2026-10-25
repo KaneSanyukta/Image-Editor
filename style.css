@@ -139,4 +139,9 @@ main section .bottom .placeholder p{
   -ms-overflow-style: none;
 }
 
+canvas{
+    display: none;
+    max-width: 100%;
+    max-height: 800px;
+}
 
