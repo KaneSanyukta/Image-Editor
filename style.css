@@ -132,4 +132,11 @@ main section .bottom .placeholder p{
     font-size: var(--font-size-lg);
 }
 
+.hide-scrollbar{
+  &::-webkit-scrollbar{
+    display: none;
+  }
+  -ms-overflow-style: none;
+}
+
 
