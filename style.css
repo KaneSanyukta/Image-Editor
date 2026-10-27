@@ -32,6 +32,7 @@ main section .top{
 }
 
 .btn{
+    text-transform: capitalize;
     padding: var(--padding-sm) var(--padding-lg);
     border: none;
     outline: none;
@@ -151,5 +152,122 @@ canvas{
     gap: var(--gutter-sm);
 }
 .presets-btn{
-    color: black;
+    color: var(--bg-active-color);
+    background-color: red;
+}
+
+/* Make the image preview sticky while scrolling */
+main section .bottom {
+    position: sticky;
+    top: 16px;
+    align-self: flex-start;
+    flex-shrink: 0;
+    z-index: 5;
+}
+
+/* Tablet */
+@media screen and (max-width: 1024px) {
+    main section {
+        gap: var(--gutter-md);
+        padding: var(--padding-lg);
+    }
+
+    main section .left {
+        width: 65%;
+        min-width: 0;
+    }
+
+    main section .right {
+        width: 35%;
+        min-width: 0;
+    }
+
+    main section .bottom {
+        aspect-ratio: auto;
+        min-height: 300px;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    main section {
+        flex-direction: column;
+        padding: var(--padding-md);
+        gap: var(--gutter-lg);
+    }
+
+    main section .left,
+    main section .right {
+        width: 100%;
+        min-width: 0;
+    }
+
+    main section .left {
+        gap: var(--gutter-md);
+    }
+
+    main section .top {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    main section .bottom {
+        position: sticky;
+        top: 8px;
+        width: 100%;
+        min-height: 220px;
+        max-height: 55vh;
+        aspect-ratio: auto;
+        padding: var(--padding-lg);
+        overflow: auto;
+    }
+
+    canvas {
+        max-width: 100%;
+        max-height: 50vh;
+        height: auto;
+    }
+
+    .presets {
+        gap: var(--gutter-sm);
+    }
+
+    .presets-btn {
+        max-width: 100%;
+    }
+}
+
+/* Extra-small mobile screens */
+@media screen and (max-width: 480px) {
+    main section {
+        padding: var(--padding-sm);
+    }
+
+    main section .top {
+        gap: var(--gutter-sm);
+    }
+
+    .btn {
+        padding: var(--padding-sm);
+        font-size: 0.85rem;
+    }
+
+    main section .right {
+        padding: var(--padding-md);
+    }
+
+    main section .bottom {
+        min-height: 180px;
+        max-height: 45vh;
+    }
+
+    main section .bottom .placeholder i {
+        font-size: 3rem;
+    }
+
+    main section .bottom .placeholder p {
+        font-size: var(--font-size-md);
+        text-align: center;
+    }
 }

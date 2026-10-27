@@ -141,7 +141,7 @@ function createFilters(){
 createFilters();
 
 function applyFilters(property){
-    console.log(property);
+    // console.log(property);
 
     // crearing previous image
     canvasCtx.clearRect(0,0,imageCanvas.width,imageCanvas.height);
@@ -236,25 +236,340 @@ downloadBtn.addEventListener("click",()=>{
     link.click();
 });
 
-Object.keys(presets).forEach(presetName =>{
+const presets = {
+
+    oldSchool: {
+        brightness: 105,
+        contrast: 115,
+        saturation: 80,
+        grayscale: 10,
+        sepia: 35,
+        blur: 0,
+        hueRotation: 0,
+        opacity: 100,
+        invert: 0
+    },
+
+    vintage: {
+        brightness: 110,
+        contrast: 90,
+        saturation: 75,
+        grayscale: 0,
+        sepia: 45,
+        blur: 0,
+        hueRotation: 350,
+        opacity: 100,
+        invert: 0
+    },
+
+    blackAndWhite: {
+        brightness: 105,
+        contrast: 125,
+        saturation: 0,
+        grayscale: 100,
+        sepia: 0,
+        blur: 0,
+        hueRotation: 0,
+        opacity: 100,
+        invert: 0
+    },
+
+    warm: {
+        brightness: 110,
+        contrast: 105,
+        saturation: 120,
+        grayscale: 0,
+        sepia: 20,
+        blur: 0,
+        hueRotation: 350,
+        opacity: 100,
+        invert: 0
+    },
+
+    cool: {
+        brightness: 100,
+        contrast: 110,
+        saturation: 105,
+        grayscale: 0,
+        sepia: 0,
+        blur: 0,
+        hueRotation: 190,
+        opacity: 100,
+        invert: 0
+    },
+
+    retro: {
+        brightness: 105,
+        contrast: 90,
+        saturation: 85,
+        grayscale: 5,
+        sepia: 30,
+        blur: 0.3,
+        hueRotation: 10,
+        opacity: 100,
+        invert: 0
+    },
+
+    dramatic: {
+        brightness: 90,
+        contrast: 155,
+        saturation: 110,
+        grayscale: 15,
+        sepia: 0,
+        blur: 0,
+        hueRotation: 0,
+        opacity: 100,
+        invert: 0
+    },
+
+    vivid: {
+        brightness: 105,
+        contrast: 115,
+        saturation: 165,
+        grayscale: 0,
+        sepia: 0,
+        blur: 0,
+        hueRotation: 0,
+        opacity: 100,
+        invert: 0
+    },
+
+    soft: {
+        brightness: 110,
+        contrast: 90,
+        saturation: 95,
+        grayscale: 0,
+        sepia: 5,
+        blur: 0.5,
+        hueRotation: 0,
+        opacity: 100,
+        invert: 0
+    },
+
+    dreamy: {
+        brightness: 115,
+        contrast: 85,
+        saturation: 110,
+        grayscale: 0,
+        sepia: 10,
+        blur: 1,
+        hueRotation: 5,
+        opacity: 95,
+        invert: 0
+    },
+
+    fadedFilm: {
+        brightness: 110,
+        contrast: 80,
+        saturation: 65,
+        grayscale: 10,
+        sepia: 20,
+        blur: 0,
+        hueRotation: 0,
+        opacity: 100,
+        invert: 0
+    },
+
+    // 1. Kodak Portra
+    kodakPortra: {
+        brightness: 108,
+        contrast: 92,
+        saturation: 85,
+        grayscale: 0,
+        sepia: 18,
+        blur: 0,
+        hueRotation: 355,
+        opacity: 100,
+        invert: 0
+    },
+
+    goldenHour: {
+        brightness: 112,
+        contrast: 105,
+        saturation: 115,
+        grayscale: 0,
+        sepia: 25,
+        blur: 0,
+        hueRotation: 350,
+        opacity: 100,
+        invert: 0
+    },
+
+    moody: {
+        brightness: 82,
+        contrast: 125,
+        saturation: 85,
+        grayscale: 5,
+        sepia: 8,
+        blur: 0,
+        hueRotation: 0,
+        opacity: 100,
+        invert: 0
+    },
+
+    pastel: {
+        brightness: 115,
+        contrast: 82,
+        saturation: 85,
+        grayscale: 5,
+        sepia: 5,
+        blur: 0,
+        hueRotation: 0,
+        opacity: 100,
+        invert: 0
+    },
+
+    tealOrange: {
+        brightness: 100,
+        contrast: 120,
+        saturation: 120,
+        grayscale: 0,
+        sepia: 10,
+        blur: 0,
+        hueRotation: 345,
+        opacity: 100,
+        invert: 0
+    },
+
+    matte: {
+        brightness: 108,
+        contrast: 78,
+        saturation: 85,
+        grayscale: 0,
+        sepia: 8,
+        blur: 0,
+        hueRotation: 0,
+        opacity: 100,
+        invert: 0
+    },
+
+    arctic: {
+        brightness: 105,
+        contrast: 110,
+        saturation: 90,
+        grayscale: 0,
+        sepia: 0,
+        blur: 0,
+        hueRotation: 185,
+        opacity: 100,
+        invert: 0
+    },
+
+    sunset: {
+        brightness: 105,
+        contrast: 112,
+        saturation: 125,
+        grayscale: 0,
+        sepia: 22,
+        blur: 0,
+        hueRotation: 340,
+        opacity: 100,
+        invert: 0
+    },
+
+    cyberpunk: {
+        brightness: 100,
+        contrast: 130,
+        saturation: 160,
+        grayscale: 0,
+        sepia: 0,
+        blur: 0,
+        hueRotation: 285,
+        opacity: 100,
+        invert: 0
+    },
+
+    coffee: {
+        brightness: 95,
+        contrast: 105,
+        saturation: 75,
+        grayscale: 0,
+        sepia: 35,
+        blur: 0,
+        hueRotation: 0,
+        opacity: 100,
+        invert: 0
+    },
+
+    rose: {
+        brightness: 108,
+        contrast: 98,
+        saturation: 110,
+        grayscale: 0,
+        sepia: 12,
+        blur: 0,
+        hueRotation: 325,
+        opacity: 100,
+        invert: 0
+    },
+
+    forest: {
+        brightness: 95,
+        contrast: 115,
+        saturation: 105,
+        grayscale: 0,
+        sepia: 8,
+        blur: 0,
+        hueRotation: 20,
+        opacity: 100,
+        invert: 0
+    },
+
+    ocean: {
+        brightness: 100,
+        contrast: 112,
+        saturation: 115,
+        grayscale: 0,
+        sepia: 0,
+        blur: 0,
+        hueRotation: 175,
+        opacity: 100,
+        invert: 0
+    },
+
+    polaroid: {
+        brightness: 110,
+        contrast: 88,
+        saturation: 80,
+        grayscale: 0,
+        sepia: 18,
+        blur: 0,
+        hueRotation: 0,
+        opacity: 100,
+        invert: 0
+    },
+};
+
+
+Object.keys(presets).forEach((presetName) => {
     const presetsBtn = document.createElement("button");
-    presetsBtn.classList.add("presets-btn btn");
+
+    presetsBtn.classList.add("btn");
     presetsBtn.textContent = presetName;
 
     presetsContainer.appendChild(presetsBtn);
 
-    presetsBtn.addEventListener("click",()=>{
-        const preset = presets(presetName);
+    presetsBtn.addEventListener("click", (event) => {
+        // Remove active class from all preset buttons
+        presetsContainer.querySelectorAll(".btn").forEach((btn) => {
+            btn.classList.remove("presets-btn");
+        });
 
-        console.log(preset);
+        // Add active class to the clicked button
+        event.currentTarget.classList.add("presets-btn");
 
-        Object.keys(preset).forEach(filterName =>{
+        // Get the selected preset
+        const preset = presets[presetName];
+
+        // Update filter values
+        Object.keys(preset).forEach((filterName) => {
             filters[filterName].value = preset[filterName];
         });
 
+        // Apply selected filters
         applyFilters();
 
-        // to change side-bar rangs
+        // Update sidebar ranges
         filterContainer.innerHTML = "";
         createFilters();
     });
